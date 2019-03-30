@@ -65,8 +65,19 @@ body {
   display: block;
   position: relative;
   text-align: left;
-  margin-left: 18px;
+  padding: 0 18px;
   font-size: 20px;
   color: gray;
   font-family: 'Raleway', sans-serif;
+}
+
+#coordinates {
+  display: block;
+  position: relative;
+  text-align: left;
+  padding: 0 18px;
+  font-size: 20px;
+  color: gray;
+  font-family: 'Raleway', sans-serif;
+  word-wrap: break-word;
 }

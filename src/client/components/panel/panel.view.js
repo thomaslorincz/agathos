@@ -9,16 +9,20 @@ export default class PanelView extends View {
    */
   constructor(container) {
     super(container);
+    this.selected = document.getElementById('selected');
+    this.coordinates = document.getElementById('coordinates');
   }
 
   /**
-   * @param {Object} properties
+   * @param {Object} detail
    */
-  draw(properties) {
-    if (properties) {
-      document.getElementById('selected').innerText = properties['DBUID'];
+  draw(detail) {
+    if (detail) {
+      this.selected.innerText = detail.properties['DBUID'];
+      this.coordinates.innerText = detail.geometry;
     } else {
-      document.getElementById('selected').innerText = '';
+      this.selected.innerText = '';
+      this.coordinates.innerText = '';
     }
   }
 }

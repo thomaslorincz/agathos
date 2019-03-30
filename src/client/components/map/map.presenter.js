@@ -13,7 +13,7 @@ export default class MapPresenter extends Presenter {
     super(model, view);
 
     this.view.container.addEventListener('featureClicked', (event) => {
-      this.model.updateSelected(event.detail.properties);
+      this.model.updateSelected(event.detail);
     });
 
     document.addEventListener('selectionUpdated', (event) => {

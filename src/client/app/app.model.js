@@ -11,10 +11,10 @@ export default class AppModel extends Model {
   }
 
   /**
-   * @param {Object} properties
+   * @param {Object} detail
    */
-  updateSelected(properties) {
-    const selected = properties['DBUID'];
+  updateSelected(detail) {
+    const selected = detail.properties['DBUID'];
     if (selected === this.selected) {
       document.dispatchEvent(new CustomEvent('selectionUpdated', {
         detail: {properties: null},
@@ -22,7 +22,7 @@ export default class AppModel extends Model {
     } else {
       this.selected = selected;
       document.dispatchEvent(new CustomEvent('selectionUpdated', {
-        detail: {properties: properties},
+        detail: detail,
       }));
     }
   }

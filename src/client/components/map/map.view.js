@@ -1,5 +1,6 @@
 import View from '../../superclasses/view';
 import mapboxgl from 'mapbox-gl';
+import * as turf from '@turf/turf';
 
 /**
  * A view that represents an interactive map
@@ -79,7 +80,7 @@ export default class MapView extends View {
 
       this.map.on('click', 'albertaLayer', (e) => {
         const features = this.map.queryRenderedFeatures(
-            [e.point.x, e.point.y],
+            e.point,
             'albertaLayer'
         );
         if (features.length > 0) {
@@ -87,8 +88,16 @@ export default class MapView extends View {
             return d.layer.id === 'albertaLayer';
           });
           const feature = thisLayerFeatures[0];
+          const bbox = turf.bbox(
+              turf.polygonize(
+                  turf.multiLineString(feature.geometry.coordinates)
+              )
+          );
           this.container.dispatchEvent(new CustomEvent('featureClicked', {
-            detail: {properties: feature.properties},
+            detail: {
+              properties: feature.properties,
+              geometry: bbox,
+            },
           }));
         }
       });

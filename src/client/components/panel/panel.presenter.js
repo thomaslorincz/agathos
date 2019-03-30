@@ -13,7 +13,7 @@ export default class PanelPresenter extends Presenter {
     super(model, view);
 
     document.addEventListener('selectionUpdated', (event) => {
-      this.view.draw(event.detail.properties);
+      this.view.draw(event.detail);
     });
   }
 }
