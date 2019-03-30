@@ -1,1 +1,0 @@
-body,html{height:100%}body{position:fixed;width:100%;margin:0;overflow:hidden}#nameplate{height:40px;line-height:40px;font-family:Montserrat,sans-serif;box-shadow:0 4px 6px 0 rgba(0,0,0,.2);padding-left:40px;font-size:24px;color:#228b22;z-index:2;vertical-align:middle;background-color:#fff}#map,#nameplate{display:block;position:relative;width:100%}#map{height:calc(100% - 40px)}

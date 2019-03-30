@@ -17,7 +17,7 @@ export default class MapView extends View {
       container: 'map',
       style: 'mapbox://styles/mapbox/light-v9',
       center: [-113.323975, 53.631611],
-      zoom: 7,
+      zoom: 4,
     });
 
     this.map.on('load', () => {
@@ -25,9 +25,9 @@ export default class MapView extends View {
         id: 'albertaLayer',
         source: {
           type: 'vector',
-          url: 'mapbox://thomaslorincz.b3vm5s7s'
+          url: 'mapbox://thomaslorincz.2fi1brdk'
         },
-        'source-layer': 'alberta_dissemination_blocks-b1ubfe',
+        'source-layer': 'adb',
         type: 'fill',
         paint: {
           'fill-color': 'rgba(34,139,34,0.5)',
@@ -39,9 +39,9 @@ export default class MapView extends View {
         id: 'albertaLayerSelected',
         source: {
           type: 'vector',
-          url: 'mapbox://thomaslorincz.b3vm5s7s'
+          url: 'mapbox://thomaslorincz.2fi1brdk'
         },
-        'source-layer': 'alberta_dissemination_blocks-b1ubfe',
+        'source-layer': 'adb',
         type: 'line',
         feature_type: 'fill',
         paint: {
