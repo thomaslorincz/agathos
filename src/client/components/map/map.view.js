@@ -22,49 +22,48 @@ export default class MapView extends View {
 
     this.map.on('load', () => {
       this.map.addLayer({
-        id: 'albertaLayer',
-        source: {
+        'id': 'albertaLayer',
+        'source': {
           type: 'vector',
-          url: 'mapbox://thomaslorincz.2fi1brdk'
+          url: 'mapbox://thomaslorincz.2fi1brdk',
         },
         'source-layer': 'adb',
-        type: 'fill',
-        paint: {
+        'type': 'fill',
+        'paint': {
           'fill-color': 'rgba(34,139,34,0.5)',
-          'fill-outline-color': 'rgba(34,139,34,0.2)'
+          'fill-outline-color': 'rgba(34,139,34,0.2)',
         },
       });
 
       this.map.addLayer({
-        id: 'albertaLayerSelected',
-        source: {
+        'id': 'albertaLayerSelected',
+        'source': {
           type: 'vector',
-          url: 'mapbox://thomaslorincz.2fi1brdk'
+          url: 'mapbox://thomaslorincz.2fi1brdk',
         },
         'source-layer': 'adb',
-        type: 'line',
-        feature_type: 'fill',
-        paint: {
+        'type': 'line',
+        'feature_type': 'fill',
+        'paint': {
           'line-width': 6,
-          'line-color': 'black'
+          'line-color': 'black',
         },
-        filter: ['in', 'DBUID', ''],
+        'filter': ['in', 'DBUID', ''],
       });
 
       this.map.on('click', 'albertaLayer', (e) => {
         const features = this.map.queryRenderedFeatures(
-            [e.point.x,e.point.y],
+            [e.point.x, e.point.y],
             'albertaLayer'
         );
         if (features.length > 0) {
-          let thisLayerFeatures = features.filter((d) => {
+          const thisLayerFeatures = features.filter((d) => {
             return d.layer.id === 'albertaLayer';
           });
           const feature = thisLayerFeatures[0];
-          this.map.setFilter(
-              'albertaLayerSelected',
-              ['in','DBUID', feature.properties['DBUID']]
-          );
+          this.container.dispatchEvent(new CustomEvent('featureClicked', {
+            detail: {properties: feature.properties},
+          }));
         }
       });
 
@@ -76,5 +75,12 @@ export default class MapView extends View {
         this.map.getCanvas().style.cursor = '';
       });
     });
+  }
+
+  /**
+   * @param {string} dbuid
+   */
+  updateSelected(dbuid) {
+    this.map.setFilter('albertaLayerSelected', ['in', 'DBUID', dbuid]);
   }
 }
