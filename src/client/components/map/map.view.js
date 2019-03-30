@@ -15,7 +15,7 @@ export default class MapView extends View {
         'AxamZzM3dsaWdkZ3Q2eGJyIn0.mXjlp9c3l2-NBoS1uaEUdw';
     this.map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/light-v9',
+      style: 'mapbox://styles/thomaslorincz/cjtvwqllq1crw1fntd99j4di3',
       center: [-113.323975, 53.631611],
       zoom: 4,
     });
