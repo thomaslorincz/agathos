@@ -22,15 +22,20 @@ export default class MapView extends View {
 
     this.map.on('load', () => {
       this.map.addLayer({
-        'id': 'simple-tiles',
-        'type': 'raster',
+        'id': 'albertaLayer',
+        'type': 'fill',
         'source': {
-          'type': 'raster',
-          'tiles': ['https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=874718354841f0e0250b4b06a05a971e'],
-          'tileSize': 256,
+          'type': 'geojson',
+          'data': 'https://s3.amazonaws.com/propel-agathos/alberta_dissemination_blocks.geojson'
         },
-        'minzoom': 0,
-        'maxzoom': 22,
+        'paint': {
+          'fill-color': 'rgba(200, 100, 240, 0.4)',
+          'fill-outline-color': 'rgba(200, 100, 240, 1)'
+        }
+      });
+
+      this.map.on('click', 'albertaLayer', (e) => {
+        console.log(e);
       });
     });
   }
