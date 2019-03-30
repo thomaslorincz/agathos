@@ -25,7 +25,7 @@ export default class MapView extends View {
         'id': 'albertaLayer',
         'source': {
           type: 'vector',
-          url: 'mapbox://thomaslorincz.2fi1brdk',
+          url: 'mapbox://thomaslorincz.04sj5fyf',
         },
         'source-layer': 'adb',
         'type': 'fill',
@@ -39,7 +39,7 @@ export default class MapView extends View {
         'id': 'albertaLayerSelected',
         'source': {
           type: 'vector',
-          url: 'mapbox://thomaslorincz.2fi1brdk',
+          url: 'mapbox://thomaslorincz.04sj5fyf',
         },
         'source-layer': 'adb',
         'type': 'line',
@@ -49,6 +49,32 @@ export default class MapView extends View {
           'line-color': 'black',
         },
         'filter': ['in', 'DBUID', ''],
+      });
+
+      this.map.addLayer({
+        'id': 'cellTowersLayer',
+        'source': {
+          type: 'vector',
+          url: 'mapbox://thomaslorincz.9ph2tktu',
+        },
+        'source-layer': 'cell_towers',
+        'type': 'circle',
+        'paint': {
+          'circle-radius': 4,
+          'circle-color': [
+            'match',
+            ['get', 'radio'],
+            'LTE', '#0000FF',
+            'GSM', '#FFFF00',
+            'UMTS', '#FF0000',
+            'CDMA', '#FF00FF',
+            '#FFFFFF',
+          ],
+          'circle-opacity': 0.5,
+          'circle-stroke-color': '#000000',
+          'circle-stroke-width': 1,
+          'circle-stroke-opacity': 1,
+        },
       });
 
       this.map.on('click', 'albertaLayer', (e) => {
