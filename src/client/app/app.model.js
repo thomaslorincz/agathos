@@ -15,21 +15,32 @@ export default class AppModel extends Model {
    * @param {Object} detail
    */
   updateSelected(detail) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `https://2b027d5c.ngrok.io/${detail.geometry[0]}/${detail.geometry[1]}/${detail.properties['DBUID']}/${Math.round((new Date()).getTime() / 1000) + (this.currentDayOffset * 86400)}/`, true);
-    xhr.send();
-
-    const selected = detail.properties['DBUID'];
-    if (selected === this.selected) {
-      document.dispatchEvent(new CustomEvent('selectionUpdated', {
-        detail: {properties: null},
-      }));
-    } else {
-      this.selected = selected;
-      document.dispatchEvent(new CustomEvent('selectionUpdated', {
-        detail: detail,
-      }));
-    }
+    window.fetch(`https://2b027d5c.ngrok.io/${detail.geometry[0]}/${detail.geometry[1]}/${detail.properties['DBUID']}/${Math.round((new Date()).getTime() / 1000) + (this.currentDayOffset * 86400)}/`, {
+      method: 'GET',
+      mode: 'no-cors',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Headers': 'application/json',
+      },
+    }) // Call the fetch function passing the url of the API as a parameter
+        .then((response) => {
+          console.log(response);
+          const selected = detail.properties['DBUID'];
+          if (selected === this.selected) {
+            document.dispatchEvent(new CustomEvent('selectionUpdated', {
+              detail: {properties: null},
+            }));
+          } else {
+            this.selected = selected;
+            document.dispatchEvent(new CustomEvent('selectionUpdated', {
+              detail: detail,
+            }));
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   }
 
   /**
