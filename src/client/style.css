@@ -25,6 +25,7 @@ body {
   z-index: 2;
   vertical-align: middle;
   background-color: white;
+  user-select: none;
 }
 
 #map {
@@ -59,6 +60,7 @@ body {
   font-size: 32px;
   color: ghostwhite;
   font-family: 'Raleway', sans-serif;
+  user-select: none;
 }
 
 #selected {
