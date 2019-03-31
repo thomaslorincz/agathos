@@ -19,6 +19,7 @@ export default class MapView extends View {
       style: 'mapbox://styles/thomaslorincz/cjtvwqllq1crw1fntd99j4di3',
       center: [-113.323975, 53.631611],
       zoom: 4,
+      logoPosition: 'top-right',
     });
 
     this.map.on('load', () => {
