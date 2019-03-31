@@ -24,6 +24,6 @@ export default class AppPresenter extends Presenter {
     new PanelPresenter(this.model, this.panelView);
 
     this.timelineView = new TimelineView(document.getElementById('timeline'));
-    new TimelinePresenter(this.mode, this.timelineView);
+    new TimelinePresenter(this.model, this.timelineView);
   }
 }

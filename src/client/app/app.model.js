@@ -8,6 +8,7 @@ export default class AppModel extends Model {
   constructor() {
     super();
     this.selected = null;
+    this.currentYear = 2017;
   }
 
   /**
@@ -25,5 +26,15 @@ export default class AppModel extends Model {
         detail: detail,
       }));
     }
+  }
+
+  /**
+   * @param {number} year
+   */
+  updateYear(year) {
+    this.currentYear = year;
+    document.dispatchEvent(new CustomEvent('yearUpdated', {
+      detail: {value: this.currentYear},
+    }));
   }
 }
