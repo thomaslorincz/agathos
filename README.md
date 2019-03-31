@@ -1,5 +1,7 @@
 # 🚜 Agathos
 A precision agriculture tool
+##URL
+http://agathos.herokuapp.com
 ## Install
 ```
 git clone https://github.com/thomaslorincz/agathos.git
