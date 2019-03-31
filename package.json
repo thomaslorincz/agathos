@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/thomaslorincz/agathos#readme",
   "dependencies": {
+    "@mdi/font": "^3.5.95",
     "@turf/turf": "^5.1.6",
     "express": "^4.16.4",
     "mapbox-gl": "^0.53.1"

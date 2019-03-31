@@ -26,9 +26,9 @@ export default class MapView extends View {
         'id': 'albertaLayer',
         'source': {
           type: 'vector',
-          url: 'mapbox://thomaslorincz.04sj5fyf',
+          url: 'mapbox://thomaslorincz.d8zdo0sb',
         },
-        'source-layer': 'adb',
+        'source-layer': 'alberta_db_ecumene',
         'type': 'fill',
         'paint': {
           'fill-color': 'rgba(34,139,34,0.5)',
@@ -52,32 +52,6 @@ export default class MapView extends View {
         'filter': ['in', 'DBUID', ''],
       });
 
-      this.map.addLayer({
-        'id': 'cellTowersLayer',
-        'source': {
-          type: 'vector',
-          url: 'mapbox://thomaslorincz.9ph2tktu',
-        },
-        'source-layer': 'cell_towers',
-        'type': 'circle',
-        'paint': {
-          'circle-radius': 4,
-          'circle-color': [
-            'match',
-            ['get', 'radio'],
-            'LTE', '#0000FF',
-            'GSM', '#FFFF00',
-            'UMTS', '#FF0000',
-            'CDMA', '#FF00FF',
-            '#FFFFFF',
-          ],
-          'circle-opacity': 0.5,
-          'circle-stroke-color': '#000000',
-          'circle-stroke-width': 1,
-          'circle-stroke-opacity': 1,
-        },
-      });
-
       this.map.on('click', 'albertaLayer', (e) => {
         const features = this.map.queryRenderedFeatures(
             e.point,
@@ -88,7 +62,7 @@ export default class MapView extends View {
             return d.layer.id === 'albertaLayer';
           });
           const feature = thisLayerFeatures[0];
-          const bbox = turf.bbox(
+          const center = turf.centerOfMass(
               turf.polygonize(
                   turf.multiLineString(feature.geometry.coordinates)
               )
@@ -96,7 +70,7 @@ export default class MapView extends View {
           this.container.dispatchEvent(new CustomEvent('featureClicked', {
             detail: {
               properties: feature.properties,
-              geometry: bbox,
+              geometry: center.geometry.coordinates,
             },
           }));
         }

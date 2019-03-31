@@ -18,6 +18,7 @@ export default class PanelView extends View {
    */
   draw(detail) {
     if (detail) {
+      console.log(detail);
       this.selected.innerText = detail.properties['DBUID'];
       this.coordinates.innerText = detail.geometry;
     } else {
