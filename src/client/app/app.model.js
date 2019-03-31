@@ -15,18 +15,13 @@ export default class AppModel extends Model {
    * @param {Object} detail
    */
   updateSelected(detail) {
-    window.fetch(`https://2b027d5c.ngrok.io/${detail.geometry[0]}/${detail.geometry[1]}/${detail.properties['DBUID']}/${Math.round((new Date()).getTime() / 1000) + (this.currentDayOffset * 86400)}/`, {
+    window.fetch(`http://localhost:5000/${detail.geometry[0]}/${detail.geometry[1]}/${detail.properties['DBUID']}/${Math.round((new Date()).getTime() / 1000) + (this.currentDayOffset * 86400)}/`, {
       method: 'GET',
-      mode: 'no-cors',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET',
-        'Access-Control-Allow-Headers': 'application/json',
-      },
     }) // Call the fetch function passing the url of the API as a parameter
-        .then((response) => {
-          console.log(response);
+        .then((response) => response.json())
+        .then((data) => {
           const selected = detail.properties['DBUID'];
+          detail.temp = data.temp;
           if (selected === this.selected) {
             document.dispatchEvent(new CustomEvent('selectionUpdated', {
               detail: {properties: null},
