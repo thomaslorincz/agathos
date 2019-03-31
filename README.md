@@ -1,6 +1,6 @@
 # 🚜 Agathos
 A precision agriculture tool
-##URL
+## URL
 http://agathos.herokuapp.com
 ## Install
 ```
