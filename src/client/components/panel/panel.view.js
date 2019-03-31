@@ -19,8 +19,10 @@ export default class PanelView extends View {
   draw(detail) {
     if (detail) {
       console.log(detail);
-      this.selected.innerText = detail.properties['DBUID'];
-      this.coordinates.innerText = detail.geometry;
+      this.selected.innerText = `ID: ${detail.properties['DBUID']}`;
+      const lon = detail.geometry[0];
+      const lat = detail.geometry[1];
+      this.coordinates.innerText = `Center:\nLon: ${lon}\nLat: ${lat}`;
     } else {
       this.selected.innerText = '';
       this.coordinates.innerText = '';
