@@ -30,14 +30,5 @@ def plot_png():
     return Response(output.getvalue(), mimetype='image/png')
 
 
-# def create_figure():
-#     fig = Figure()
-#     axis = fig.add_subplot(1, 1, 1)
-#     xs = range(100)
-#     ys = [random.randint(1, 50) for x in xs]
-#     axis.plot(xs, ys)
-#     return fig
-
-
 if __name__ == '__main__':
     app.run(debug=True)

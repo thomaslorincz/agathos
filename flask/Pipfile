@@ -9,6 +9,10 @@ numpy = "*"
 pandas = "*"
 matplotlib = "*"
 sklearn = "*"
+pyshp = "*"
+shapely = "*"
+weather-api = "*"
+flask-cors = "*"
 
 [dev-packages]
 
