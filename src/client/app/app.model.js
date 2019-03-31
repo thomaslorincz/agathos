@@ -8,13 +8,17 @@ export default class AppModel extends Model {
   constructor() {
     super();
     this.selected = null;
-    this.currentYear = 2017;
+    this.currentDayOffset = 0;
   }
 
   /**
    * @param {Object} detail
    */
   updateSelected(detail) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `https://2b027d5c.ngrok.io/${detail.geometry[0]}/${detail.geometry[1]}/${detail.properties['DBUID']}/${Math.round((new Date()).getTime() / 1000) + (this.currentDayOffset * 86400)}/`, true);
+    xhr.send();
+
     const selected = detail.properties['DBUID'];
     if (selected === this.selected) {
       document.dispatchEvent(new CustomEvent('selectionUpdated', {
@@ -29,12 +33,12 @@ export default class AppModel extends Model {
   }
 
   /**
-   * @param {number} year
+   * @param {number} dayOffset
    */
-  updateYear(year) {
-    this.currentYear = year;
-    document.dispatchEvent(new CustomEvent('yearUpdated', {
-      detail: {value: this.currentYear},
+  updateDayOffset(dayOffset) {
+    this.currentDayOffset = dayOffset;
+    document.dispatchEvent(new CustomEvent('dayUpdated', {
+      detail: {value: this.currentDayOffset},
     }));
   }
 }

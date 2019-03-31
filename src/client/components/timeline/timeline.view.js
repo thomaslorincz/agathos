@@ -17,13 +17,19 @@ export default class TimelineView extends View {
       }));
     });
 
-    this.year = document.getElementById('currentYear');
+    this.offset = document.getElementById('offset');
   }
 
   /**
-   * @param {number} year
+   * @param {number} dayOffset
    */
-  draw(year) {
-    this.year.innerText = year.toString();
+  draw(dayOffset) {
+    if (dayOffset === 0) {
+      this.offset.innerText = '';
+    } else if (dayOffset > 0) {
+      this.offset.innerText = ' +' + dayOffset.toString() + ' days';
+    } else {
+      this.offset.innerText = ' ' + dayOffset.toString() + ' days';
+    }
   }
 }

@@ -12,10 +12,10 @@ export default class TimelinePresenter extends Presenter {
     super(model, view);
 
     this.view.container.addEventListener('rangeInputted', (event) => {
-      this.model.updateYear(event.detail.value);
+      this.model.updateDayOffset(event.detail.value);
     });
 
-    document.addEventListener('yearUpdated', (event) => {
+    document.addEventListener('dayUpdated', (event) => {
       this.view.draw(event.detail.value);
     });
   }
